@@ -1,0 +1,66 @@
+#citadelBody .buddypress-wrap {
+    button.neutralButton {
+        background: none;
+        font-size: inherit;
+        font-family: inherit;
+        border: none;
+        border-radius: 0;
+        margin: 0;
+        padding: 0;
+        text-align: inherit;
+        display: inline;
+        outline: 0;
+        -webkit-transition: none;
+        transition: none;
+        font-style: normal;
+        text-decoration: none;
+        line-height: 1.2;
+        height: auto;
+        min-height: auto;
+        color: var(--bb-primary-color);
+    }
+    button.neutralButton:hover,
+    button.neutralButton:focus
+    {
+        box-shadow: none;
+        -webkit-box-shadow: none;
+    }
+
+    button.small{
+        font-size: 0.75rem !important;
+        padding: 0 0.75rem !important;   
+    }
+}
+
+
+button.neutralButton {
+    background: none;
+    font-size: inherit;
+    font-family: inherit;
+    border: none;
+    border-radius: 0;
+    margin: 0;
+    padding: 0;
+    text-align: inherit;
+    display: inline;
+    outline: 0;
+    -webkit-transition: none;
+    transition: none;
+    font-style: normal;
+    text-decoration: none;
+    line-height: 1.2;
+    height: auto;
+    min-height: auto;
+    color: var(--bb-primary-color);
+}
+button.neutralButton:hover,
+button.neutralButton:focus
+{
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+button.small{
+    font-size: 0.75rem !important;
+    padding: 0 0.75rem !important;   
+}

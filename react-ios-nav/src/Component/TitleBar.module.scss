@@ -1,0 +1,24 @@
+.titleBar {
+    background: #191B1B;
+    border-bottom: 1px solid #444444;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    width: 100%;
+    min-height: 100%;
+
+    h1 {
+        font-size: 1.5rem;
+        margin: 0;
+    }
+
+    ul {
+        list-style: none;
+        display: flex;
+        margin: 0;
+    }
+}
+
+.titleBar.sessionMode {
+    background-color: maroon;
+}
