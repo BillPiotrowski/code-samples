@@ -1,0 +1,15 @@
+.splashScreen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    padding: 0 6rem;
+
+    img {
+        margin: 0 auto;
+        max-width: 8rem;
+        width: 100%;
+    }
+
+}
