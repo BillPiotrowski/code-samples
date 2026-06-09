@@ -31,8 +31,15 @@ export const getSegueDirection = (root: string, toPath: string, fromPath: string
     if(toPath === fromPath){
         return 'lateral';
     }
+    const strippedFromPath = stripTrailingSlash(fromPath);
     const relativeToPath = getRelativePath(root, stripTrailingSlash(toPath));
-    const relativeFromPath = getRelativePath(root, stripTrailingSlash(fromPath));
+    const relativeFromPath = getRelativePath(root, strippedFromPath);
+
+    // If fromPath is outside this section's subtree, the navigation is cross-section — always lateral
+    if(relativeFromPath === strippedFromPath){
+        return 'lateral';
+    }
+
     const toPathParts = relativeToPath.split('/').filter(p => p !== '');
     const fromPathParts = relativeFromPath.split('/').filter(p => p !== '');
     const areAncestors = getPathPartsAreAncestors(toPathParts, fromPathParts);
