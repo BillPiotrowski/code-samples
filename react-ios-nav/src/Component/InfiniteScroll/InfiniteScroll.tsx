@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import styles from './InfiniteScroll.module.scss';
 import type { PaginatedResponse } from '../../Type/PaginatedResponseType';
-import SortOptions from './SortOptions';
 import useInfiniteScroll from '../../Hook/useInfiniteScroll';
 import useLastElementRef from '../../Hook/useLastElementRef';
 import List from '../List';
 import type { SortByDirection, SortOption } from './SortOption';
+import SortOptions from './SortOptions';
 
 interface InfiniteScrollArgs<T> {
     getter: (limit: number, page: number, sortBy?: string, sortDirection?: SortByDirection) => Promise<PaginatedResponse<T>>
