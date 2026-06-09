@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import NavListView from '../../Component/SplitNav/SplitNavView';
 import InfiniteScroll from '../../Component/InfiniteScroll/InfiniteScroll';
 import { useArtistsContext } from './ArtistsRoot';
-import Header from '../../Component/Header';
 import type { SortOption } from '../../Component/InfiniteScroll/SortOption';
 import type { PaginatedArtistResponseType } from '../../Type/PersonType';
 
@@ -23,7 +22,6 @@ const ArtistsList = () => {
     };
 
     return <NavListView title="Artists">
-        <Header title="Artists" />
         <InfiniteScroll
             getter={getter}
             createListElement={(artist, _, ref) => {

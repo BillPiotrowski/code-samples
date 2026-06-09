@@ -8,7 +8,7 @@ import SplitNav from './Component/SplitNav/SplitNav';
 
 const nav: NavListGroup[] = [
     {
-        title: 'Artists',
+        title: 'Creatives',
         items: [
             { title: 'Artists', to: 'artists' },
         ]

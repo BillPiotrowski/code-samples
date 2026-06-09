@@ -1,6 +1,6 @@
 
 $titleBarHeight: 3rem;
-$navMenuWidth: 20rem;
+$navMenuWidth: 15rem;
 
 .splitNav {
     height: 100vh;
@@ -18,7 +18,7 @@ $navMenuWidth: 20rem;
             height: calc(100vh - $titleBarHeight);
             z-index: 15;
             transition: left 600ms;
-            background-color: var(--bb-body-background-color);
+            background-color: var(--bg);
         }
 
         .titleContainer {
@@ -60,7 +60,8 @@ $navMenuWidth: 20rem;
 
         .navContainer {
             position: absolute;
-            background-color: #191B1B;
+            background-color: var(--bg-nav);
+            border-right: 1px solid var(--border);
             top: 0;
             left: 0;
             width: $navMenuWidth;
@@ -69,7 +70,6 @@ $navMenuWidth: 20rem;
 
         .titleContainer {
             position: absolute;
-            background: peru;
             width: calc(100vw - $navMenuWidth);
             height: $titleBarHeight;
             left: $navMenuWidth;

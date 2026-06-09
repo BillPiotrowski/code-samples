@@ -1,6 +1,6 @@
 .titleBar {
-    background: #191B1B;
-    border-bottom: 1px solid #444444;
+    background: var(--bg-nav);
+    border-bottom: 1px solid var(--border);
     display: flex;
     justify-content: space-between;
     padding: 0.5rem 1rem;
@@ -18,8 +18,4 @@
         display: flex;
         margin: 0;
     }
-}
-
-.titleBar.sessionMode {
-    background-color: maroon;
 }
