@@ -17,12 +17,12 @@ const DurerWoodcutLoader: React.FC = () => {
 
     useEffect(() => {
         if(durerWoodcutId === undefined){
-            setError(new Error('army sheet id is undefined'));
+            setError(new Error('woodcut id is undefined'));
             return;
         }
         if(
-            parentContext.editArmy !== null &&
-            parentContext.editArmy.id === durerWoodcutId
+            parentContext.selectedWoodcut !== null &&
+            parentContext.selectedWoodcut.id === durerWoodcutId
         ){
             setIsLoading(false);
             return;
@@ -30,7 +30,7 @@ const DurerWoodcutLoader: React.FC = () => {
         parentContext.api.getWoodcutById(durerWoodcutId)
         .then((response) => {
             setIsLoading(false);
-            parentContext.setEditArmy(response);
+            parentContext.setSelectedWoodcut(response);
         }).catch((error) => {
             setError(error);
         }).finally(() => {

@@ -21,23 +21,9 @@ const DurerWoodcutsList = () => {
     }
     console.log("Here 3")
 
-    return <NavListView title="Characters">
+    return <NavListView title="Durer Woodcuts">
         <Header
-            title="Characters"
-            // action={{
-            //     name: "Create",
-            //     onClick: ()=> {
-            //         parentContext.setModal(<ArmySheetCreate
-            //             rulesets={parentContext.rulesets}
-            //             isLoading={false}
-            //             createNewArmySheet={async (armySheetName: string, rulesetId: string): Promise<void> => {
-            //                 const army = await parentContext.mirrorscapeAPI.getCharacterAPI().createArmy({name: armySheetName, rulesetId})
-            //                 parentContext.setModal(null);
-            //                 navigate(`${army.rulesetId}/${army.id}`);
-            //             } }
-            //         />)
-            //     }
-            // }}
+            title="Durer Woodcuts"
         />
         <InfiniteScroll
             getter={getter}

@@ -5,20 +5,20 @@ import useSplitNavContext from '../../Component/SplitNav/Context/useSplitNavCont
 import type { DurerWoodcutType } from '../../Type/DurerWoodcutType';
 
 export interface DurerWoodcutsRootOutletContext extends AppRootContext {
-    editArmy: DurerWoodcutType | null;
-    setEditArmy: React.Dispatch<React.SetStateAction<DurerWoodcutType | null>>;
+    selectedWoodcut: DurerWoodcutType | null;
+    setSelectedWoodcut: React.Dispatch<React.SetStateAction<DurerWoodcutType | null>>;
 }
 
 export const useDurerWoodcutsContext = () => useSplitNavContext<DurerWoodcutsRootOutletContext>();
 
 const DurerWoodcutsRoot: React.FC = () => {
     const parentContext = useSplitNavContext<AppRootContext>();
-    const [editArmy, setEditArmy] = useState<DurerWoodcutType | null>(null);
+    const [selectedWoodcut, setSelectedWoodcut] = useState<DurerWoodcutType | null>(null);
 
     const childContext: DurerWoodcutsRootOutletContext = {
         ...parentContext,
-        editArmy,
-        setEditArmy,
+        selectedWoodcut,
+        setSelectedWoodcut,
     };
 
     return <SplitNavSection context={childContext} />;
