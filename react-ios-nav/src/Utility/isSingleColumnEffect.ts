@@ -10,7 +10,7 @@ const useIsSingleColumnLayout = (): boolean => {
         updateSize();
         return () => window.removeEventListener('resize', updateSize);
     }, []);
-    const [width, height] = size;
+    const [width, _] = size;
     /**
      * @todo calculate if retina pixels
      */
