@@ -1,3 +1,4 @@
+import type { PaginatedResponse } from './PaginatedResponseType';
 
 interface Person {
     id: string;
@@ -12,4 +13,7 @@ export interface Artist extends Person {
 }
 
 export interface Composer extends Person {
+}
+
+export interface PaginatedArtistResponseType extends PaginatedResponse<Artist> {
 }
