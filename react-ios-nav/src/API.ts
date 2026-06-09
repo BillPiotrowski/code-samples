@@ -18,11 +18,11 @@ export class API {
         return Promise.resolve({ items: this.woodcuts, total: this.woodcuts.length });
     };
 
-    // getWoodcutById(id: string): Promise<Woodcut> {
-    //     const woodcut = this.woodcuts.find(w => w.id === id);
-    //     if (!woodcut) return Promise.reject(new Error('Not found'));
-    //     return Promise.resolve(woodcut);
-    // }
+    getWoodcutById(id: string): Promise<DurerWoodcutType> {
+        const woodcut = this.woodcuts.find(w => w.id === id);
+        if (!woodcut) return Promise.reject(new Error('Not found'));
+        return Promise.resolve(woodcut);
+    }
 
     // updateWoodcut(id: string, updates: Partial<Woodcut>): Promise<Woodcut> {
     //     this.woodcuts = this.woodcuts.map(w =>
