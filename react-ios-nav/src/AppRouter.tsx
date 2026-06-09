@@ -8,6 +8,10 @@ import type { API } from './API';
 import DurerWoodcutsList from './Page/DurerWoodcuts/DurerWoodcutsList';
 import DurerWoodcutLoader from './Page/DurerWoodcuts/DurerWoodcutLoader';
 import DurerWoodcutView from './Page/DurerWoodcuts/DurerWoodcutView';
+import ArtistsRoot from './Page/Artists/ArtistsRoot';
+import ArtistsList from './Page/Artists/ArtistsList';
+import ArtistLoader from './Page/Artists/ArtistLoader';
+import ArtistView from './Page/Artists/ArtistView';
 
 const getAppRouter = (
     basename: string,
@@ -48,6 +52,26 @@ const getAppRouter = (
                             ]
                         }
 
+                    ]
+                },
+                {
+                    path: "artists",
+                    element: <ArtistsRoot />,
+                    children: [
+                        {
+                            index: true,
+                            element: <ArtistsList />
+                        },
+                        {
+                            path: ":artistId",
+                            element: <ArtistLoader />,
+                            children: [
+                                {
+                                    index: true,
+                                    element: <ArtistView />,
+                                },
+                            ]
+                        }
                     ]
                 }
             ]
