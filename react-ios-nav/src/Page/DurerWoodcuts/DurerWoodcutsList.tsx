@@ -25,9 +25,6 @@ const DurerWoodcutsList = () => {
     const parentContext = useOutletContext() as DurerWoodcutsRootOutletContext;
     const navigate = useNavigate();
 
-    parentContext.setTitle('Characters');
-    
-
     // useEffect(() => {
     //     parentContext.setModal(null);
     // }, [parentContext.assetListFilters]);
@@ -48,7 +45,7 @@ const DurerWoodcutsList = () => {
     }
     console.log("Here 3")
 
-    return <NavListView>
+    return <NavListView title="Characters">
         <Header
             title="Characters"
             // action={{

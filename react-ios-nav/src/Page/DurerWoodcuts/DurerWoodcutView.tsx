@@ -14,11 +14,9 @@ const DurerWoodcutView = () => {
     if(parentContext.isLoading || parentContext.editArmy === null){
         return <NavListView isLoading={true} />
     }
-    // parentContext.setTitle(parentContext.editArmy.name);
-    parentContext.setTitle("Somename");
     const navigate = useNavigate();
 
-    return <NavListView>
+    return <NavListView title="Somename">
         <div>
             <h2>Some cool stuff about the woodcut</h2>
         </div>
