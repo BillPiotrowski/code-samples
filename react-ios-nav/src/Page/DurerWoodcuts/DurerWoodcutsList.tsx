@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 import NavListView from '../../Component/SplitNav/SplitNavView';
 import type { PaginatedDurerWoodcutResponseType } from '../../Type/DurerWoodcutType';
-import InfiniteScroll from '../../Component/InfiniteScroll';
+import InfiniteScroll from '../../Component/InfiniteScroll/InfiniteScroll';
 import { useDurerWoodcutsContext } from './DurerWoodcutsRoot';
 import Header from '../../Component/Header';
-import type { SortOption } from '../../Type/SortOption';
+import type { SortOption } from '../../Component/InfiniteScroll/SortOption';
 
 const sortByOptions: SortOption[] = [
     {name: 'ID Descending', property: 'id', direction: 'DESC'},

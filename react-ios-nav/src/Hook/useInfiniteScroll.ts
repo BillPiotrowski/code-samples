@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import type { PaginatedResponse } from '../Type/PaginatedResponseType';
-import type { SortByDirection } from '../Type/SortOption';
+import type { SortByDirection } from '../Component/InfiniteScroll/SortOption';
 
 interface InfiniteScrollResponse<T> {
     isLoading: boolean;

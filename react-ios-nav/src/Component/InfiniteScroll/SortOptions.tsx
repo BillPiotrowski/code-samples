@@ -1,5 +1,5 @@
 import React from 'react';
-import type { SortOption } from '../Type/SortOption';
+import type { SortOption } from './SortOption';
 
 interface SortOptionsArgs {
     setSortOptionIndex: (index: number) => void;
