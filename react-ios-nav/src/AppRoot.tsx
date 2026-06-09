@@ -10,7 +10,6 @@ const nav: NavListGroup[] = [
     {
         title: 'Artists',
         items: [
-            { title: 'Durer Woodcuts', to: 'durer-woodcuts' },
             { title: 'Artists', to: 'artists' },
         ]
     },
