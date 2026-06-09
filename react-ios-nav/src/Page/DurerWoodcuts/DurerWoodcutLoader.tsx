@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 // import { FFNWArmySheetData, FFNWCrewSheetQuestLine } from "../RulesetDefinitions/FalloutFactionsNukaWar"
-import { useParams, useOutletContext, Outlet, useNavigate } from "react-router-dom";
-import type { DurerWoodcutsRootOutletContext } from './DurerWoodcutsRoot';
+import { useParams, Outlet, useNavigate, useOutletContext } from "react-router-dom";
+import { useDurerWoodcutsContext, type DurerWoodcutsRootOutletContext } from './DurerWoodcutsRoot';
 // import MirrorscapeAPI from "../../../api/MirrorscapeAPI";
 // import { FalloutFactionNukaWarCharacterSheetData } from "../RulesetDefinitions/FalloutFactionsNukaWar";
 // import FFNWArmySheetRoute, { FFNWArmySheetRouteOutletContext } from './FFNWArmySheetRoute';
@@ -33,6 +33,8 @@ export interface DurerWoodcutContext extends DurerWoodcutsRootOutletContext {
     isLoading: boolean;
 }
 
+export const useDurerWoodcutContext = () => useOutletContext<DurerWoodcutContext>();
+
 // interface DurerWoodcutLoaderArgs {
 //     mirrorscapeAPI: MirrorscapeAPI
 // }
@@ -41,7 +43,7 @@ const DurerWoodcutLoader: React.FC = () => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [error, setError] = useState<Error | null>(null);
     const params = useParams();
-    const parentContext = useOutletContext() as DurerWoodcutsRootOutletContext;
+    const parentContext = useDurerWoodcutsContext();
     const durerWoodcutId = params.durerWoodcutId;
     const navigate = useNavigate();
 

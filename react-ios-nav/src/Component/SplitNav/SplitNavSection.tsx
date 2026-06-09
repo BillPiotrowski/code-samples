@@ -3,8 +3,8 @@ import React, { useEffect } from "react";
 import { useResolvedPath, useLocation } from "react-router-dom";
 import { getSegueDirection, stripTrailingSlash, type SegueDirection } from "../../Utility/PathParser";
 import { AnimatedOutlet } from "../../AppRoot";
-import type { SplitNavContext } from "./SplitNavContext";
 import SegueContext from "./SegueContext";
+import { useNavPath } from "./NavPathContext";
 
 export interface AnimationPresenceCustomProps {
     segueDirection: SegueDirection;
@@ -12,15 +12,15 @@ export interface AnimationPresenceCustomProps {
     fromPath: string | null;
 }
 
-type SplitNavSectionArgs<TContext extends SplitNavContext> = {
+type SplitNavSectionArgs<TContext> = {
     context: TContext;
 }
 
-function SplitNavSection<TContext extends SplitNavContext>(args: SplitNavSectionArgs<TContext>): React.ReactElement {
-    const parentContext = args.context;
+function SplitNavSection<TContext>(args: SplitNavSectionArgs<TContext>): React.ReactElement {
+    const { previousPath, setPreviousPath } = useNavPath();
     const resolvedPath = useResolvedPath('.');
     const location = useLocation();
-    const previousPath = parentContext.previousPath;
+
     const sequeDirection: SegueDirection = previousPath !== null
         ? getSegueDirection(resolvedPath.pathname, location.pathname, previousPath)
         : 'lateral';
@@ -32,7 +32,7 @@ function SplitNavSection<TContext extends SplitNavContext>(args: SplitNavSection
     };
 
     useEffect(() => {
-        parentContext.setPreviousPath(location.pathname);
+        setPreviousPath(location.pathname);
     }, []);
 
     return <SegueContext.Provider value={sequeDirection}>
@@ -40,12 +40,12 @@ function SplitNavSection<TContext extends SplitNavContext>(args: SplitNavSection
             mode="sync"
             onExitComplete={() => {
                 setTimeout(() => {
-                    parentContext.setPreviousPath(location.pathname);
+                    setPreviousPath(location.pathname);
                 }, 100);
             }}
             custom={animationPresenceCustomProps}
         >
-            <AnimatedOutlet<TContext> key={location.pathname} context={args.context} />
+            <AnimatedOutlet key={location.pathname} context={args.context} />
         </AnimatePresence>
     </SegueContext.Provider>;
 }

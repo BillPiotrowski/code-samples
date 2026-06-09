@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
-import { useOutletContext } from 'react-router-dom';
-import type { SplitNavContext } from '../../Component/SplitNav/SplitNavContext';
 import type { AppRootContext } from '../../AppRoot';
 import SplitNavSection from '../../Component/SplitNav/SplitNavSection';
+import useSplitNavContext from '../../Component/SplitNav/useSplitNavContext';
 import type { DurerWoodcutType } from '../../Type/DurerWoodcutType';
 
-export interface DurerWoodcutsRootOutletContext extends SplitNavContext, AppRootContext {
+export interface DurerWoodcutsRootOutletContext extends AppRootContext {
     editArmy: DurerWoodcutType | null;
     setEditArmy: React.Dispatch<React.SetStateAction<DurerWoodcutType | null>>;
 }
 
+export const useDurerWoodcutsContext = () => useSplitNavContext<DurerWoodcutsRootOutletContext>();
+
 const DurerWoodcutsRoot: React.FC = () => {
-    const parentContext = useOutletContext<SplitNavContext & AppRootContext>();
+    const parentContext = useSplitNavContext<AppRootContext>();
     const [editArmy, setEditArmy] = useState<DurerWoodcutType | null>(null);
 
     const childContext: DurerWoodcutsRootOutletContext = {
@@ -20,9 +21,7 @@ const DurerWoodcutsRoot: React.FC = () => {
         setEditArmy,
     };
 
-    console.log("Here!");
-
-    return <SplitNavSection<DurerWoodcutsRootOutletContext> context={childContext} />;
+    return <SplitNavSection context={childContext} />;
 }
 
 export default DurerWoodcutsRoot;

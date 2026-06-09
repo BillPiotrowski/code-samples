@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
-import { useLocation, useNavigate, useResolvedPath, Outlet } from 'react-router-dom';
-import { type SegueDirection, stripTrailingSlash, getSegueDirection } from '../../Utility/PathParser';
+import { useLocation, useNavigate, Outlet, useResolvedPath } from 'react-router-dom';
+import { stripTrailingSlash } from '../../Utility/PathParser';
 import type { SplitNavContext } from './SplitNavContext';
 import type { NavListGroup } from './SplitNavTypes';
 import TitleBar, { type TitleBarTool } from '../TitleBar';
 import SplitNavMenu from './SplitNavMenu';
 import useIsSingleColumnLayout from '../../Utility/isSingleColumnEffect';
+import NavPathContext from './NavPathContext';
 import styles from './SplitNav.module.scss';
 
 interface SplitNavProps<TExtra> {
@@ -40,16 +41,9 @@ function SplitNav<TExtra>(props: SplitNavProps<TExtra>) {
         !showMobileMenu
     );
 
-    const segueDirection: SegueDirection = previousPath !== null
-        ? getSegueDirection(resolvedPath.pathname, location.pathname, previousPath)
-        : 'lateral';
-
     const splitNavContext: SplitNavContext = {
         setTitle: (t: string) => setTitle(t),
         setTools,
-        sequeDirection: segueDirection,
-        previousPath,
-        setPreviousPath,
         toPath: stripTrailingSlash(location.pathname),
     };
 
@@ -78,19 +72,21 @@ function SplitNav<TExtra>(props: SplitNavProps<TExtra>) {
     ].filter(Boolean).join(' ');
 
     return (
-        <div className={classes}>
-            <div className={styles.splitNav}>
-                <div className={styles.navContainer}>
-                    <SplitNavMenu navListGroups={props.navGroups} isSingleColumn={isSingleColumn} />
-                </div>
-                <div className={styles.titleContainer}>
-                    {titleBar}
-                </div>
-                <div className={styles.itemContainer}>
-                    <Outlet context={context} />
+        <NavPathContext.Provider value={{ previousPath, setPreviousPath }}>
+            <div className={classes}>
+                <div className={styles.splitNav}>
+                    <div className={styles.navContainer}>
+                        <SplitNavMenu navListGroups={props.navGroups} isSingleColumn={isSingleColumn} />
+                    </div>
+                    <div className={styles.titleContainer}>
+                        {titleBar}
+                    </div>
+                    <div className={styles.itemContainer}>
+                        <Outlet context={context} />
+                    </div>
                 </div>
             </div>
-        </div>
+        </NavPathContext.Provider>
     );
 }
 

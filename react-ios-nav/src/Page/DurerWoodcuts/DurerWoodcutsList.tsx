@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Link, useNavigate, useOutletContext } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 // import { ArmySheetsRouteRouteOutletContext } from './ArmySheetsRoute';
 // import NavListView from '../../AppMock/Components/NavListView';
 // import InfiniteScroll from '../../AppMock/Components/InfiniteScroll/InfiniteScroll';
 import NavListView from '../../Component/SplitNav/SplitNavView';
 import type { PaginatedDurerWoodcutResponseType } from '../../Type/DurerWoodcutType';
 import InfiniteScroll from '../../Component/InfiniteScroll';
-import type { DurerWoodcutsRootOutletContext } from './DurerWoodcutsRoot';
+import { useDurerWoodcutsContext } from './DurerWoodcutsRoot';
 import Header from '../../Component/Header';
 import type { SortOption } from '../../Type/SortOption';
 // import { PaginatedArmiesResponse } from '../../../data/Army/ArmyResponse';
@@ -22,7 +22,7 @@ const sortByOptions: SortOption[] = [
 ];
 
 const DurerWoodcutsList = () => {
-    const parentContext = useOutletContext() as DurerWoodcutsRootOutletContext;
+    const parentContext = useDurerWoodcutsContext();
     const navigate = useNavigate();
 
     // useEffect(() => {

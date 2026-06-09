@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
 import type { SegueDirection } from '../../Utility/PathParser';
 import { motion } from 'framer-motion';
-import { useOutletContext } from 'react-router-dom';
+import useSplitNavContext from './useSplitNavContext';
 import viewStyles from '../View.module.scss';
 import styles from './SplitNavView.module.scss';
 import { useSegueDirection } from './SegueContext';
 import type { AnimationPresenceCustomProps } from './SplitNavSection';
-import type { SplitNavContext } from './SplitNavContext';
 
 interface SplitNavViewProps {
     children?: React.ReactNode;
@@ -24,7 +23,7 @@ const getInitialX = (direction: SegueDirection) => {
 
 const SplitNavView = (props: SplitNavViewProps) => {
     const direction = getInitialX(useSegueDirection());
-    const { setTitle } = useOutletContext<SplitNavContext>();
+    const { setTitle } = useSplitNavContext();
 
     useEffect(() => {
         if (props.title !== undefined) setTitle(props.title);
