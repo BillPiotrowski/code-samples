@@ -4,6 +4,7 @@ import InfiniteScroll from '../../Component/InfiniteScroll/InfiniteScroll';
 import { useArtistsContext } from './ArtistsRoot';
 import type { SortOption } from '../../Component/InfiniteScroll/SortOption';
 import type { PaginatedArtistResponseType } from '../../Type/PersonType';
+import styles from './ArtistsList.module.scss'
 
 const sortByOptions: SortOption[] = [
     { name: 'Last Name Ascending', property: 'lastName', direction: 'ASC' },
@@ -26,7 +27,7 @@ const ArtistsList = () => {
             getter={getter}
             createListElement={(artist, _, ref) => {
                 return <li key={artist.id} ref={ref}>
-                    <Link to={`${artist.id}`}>{artist.firstName} {artist.lastName}</Link>
+                    <Link className={styles.listItemLink} to={`${artist.id}`}>{artist.firstName} {artist.lastName}</Link>
                 </li>;
             }}
             sortOptions={sortByOptions}
