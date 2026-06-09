@@ -11,14 +11,16 @@ export class API {
         this.artists = [...initialArtists];
     }
 
-    getWoodcuts(
-        page: number,
+    async getWoodcuts(
         limit: number,
+        page: number,
         sortBy?: string,
         sortDirection?: string
     ): Promise<PaginatedDurerWoodcutResponseType> {
-        // sort and paginate woodcuts
-        return Promise.resolve({ items: this.woodcuts, total: this.woodcuts.length });
+        await delay(250); 
+        const sorted = sortCollection(this.woodcuts, sortBy, sortDirection);
+        const paginated = paginateCollection(sorted, page, limit);
+        return Promise.resolve({ items: paginated, total: this.woodcuts.length });
     };
 
     getWoodcutById(id: string): Promise<DurerWoodcutType> {
@@ -27,13 +29,16 @@ export class API {
         return Promise.resolve(woodcut);
     }
 
-    getArtists(
-        page: number,
+    async getArtists(
         limit: number,
+        page: number,
         sortBy?: string,
         sortDirection?: string
     ): Promise<PaginatedArtistResponseType> {
-        return Promise.resolve({ items: this.artists, total: this.artists.length });
+        await delay(250); 
+        const sorted = sortCollection(this.artists, sortBy, sortDirection);
+        const paginated = paginateCollection(sorted, page, limit);
+        return Promise.resolve({ items: paginated, total: this.artists.length });
     }
 
     getArtistById(id: string): Promise<Artist> {
@@ -42,3 +47,30 @@ export class API {
         return Promise.resolve(artist);
     }
 }
+
+const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
+
+const sortCollection = <T>(
+    items: T[],
+    sortBy?: string,
+    sortDirection?: string
+): T[] => {
+    if (sortBy === undefined) return items;
+    const direction = sortDirection?.toUpperCase() === 'DESC' ? -1 : 1;
+    return [...items].sort((a, b) => {
+        const aVal = (a as Record<string, unknown>)[sortBy];
+        const bVal = (b as Record<string, unknown>)[sortBy];
+        if (aVal === undefined || aVal === null) return 1;
+        if (bVal === undefined || bVal === null) return -1;
+        if (typeof aVal === 'number' && typeof bVal === 'number') {
+            return (aVal - bVal) * direction;
+        }
+        return String(aVal).localeCompare(String(bVal)) * direction;
+    });
+};
+
+const paginateCollection = <T>(items: T[], page: number, limit: number): T[] => {
+    const start = (page - 1) * limit;
+    return items.slice(start, start + limit);
+};

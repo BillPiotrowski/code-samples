@@ -36,7 +36,7 @@ const useInfiniteScroll = <T>(
 
         const controller = new AbortController();
         const {signal} = controller;
-        getter(16, pageNum, sortBy, sortDirection, filters).then((retrievedMaps: PaginatedResponse<T>) => {
+        getter(20, pageNum, sortBy, sortDirection, filters).then((retrievedMaps: PaginatedResponse<T>) => {
             setResults(_ => {
                 return [...newResults, ...retrievedMaps.items]
             });
