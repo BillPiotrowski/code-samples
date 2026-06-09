@@ -1,13 +1,4 @@
-import type { DurerWoodcutType } from "./Type/DurerWoodcutType";
 import type { Artist } from "./Type/PersonType";
-
-export const initialDurerWoodcuts: DurerWoodcutType[] = [
-    {
-        id: 'gid',
-        name: 'Cool Woodcut',
-        year: '1642'
-    }
-]
 
 export const initialArtists: Artist[] = [
     {

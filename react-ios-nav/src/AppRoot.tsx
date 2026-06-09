@@ -17,8 +17,6 @@ const nav: NavListGroup[] = [
 
 export interface AppRootContext {
     api: API;
-    isSessionMode: boolean;
-    setIsSessionMode: (mode: boolean) => void;
     setModal: (modal: React.JSX.Element | null) => void;
 }
 
@@ -43,12 +41,9 @@ interface AppRootProps {
 
 const AppRoot = (props: AppRootProps) => {
     const [modal, setModal] = useState<React.JSX.Element | null>(null);
-    const [isSessionMode, setIsSessionMode] = useState(false);
 
     const extraContext: AppRootContext = {
         api: props.api,
-        isSessionMode,
-        setIsSessionMode,
         setModal,
     };
 

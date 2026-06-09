@@ -1,32 +1,11 @@
-import { initialDurerWoodcuts, initialArtists } from './data';
-import type { DurerWoodcutType, PaginatedDurerWoodcutResponseType } from './Type/DurerWoodcutType';
+import { initialArtists } from './data';
 import type { Artist, PaginatedArtistResponseType } from './Type/PersonType';
 
 export class API {
-    private woodcuts: DurerWoodcutType[];
     private artists: Artist[];
 
     constructor() {
-        this.woodcuts = [...initialDurerWoodcuts];
         this.artists = [...initialArtists];
-    }
-
-    async getWoodcuts(
-        limit: number,
-        page: number,
-        sortBy?: string,
-        sortDirection?: string
-    ): Promise<PaginatedDurerWoodcutResponseType> {
-        await delay(250); 
-        const sorted = sortCollection(this.woodcuts, sortBy, sortDirection);
-        const paginated = paginateCollection(sorted, page, limit);
-        return Promise.resolve({ items: paginated, total: this.woodcuts.length });
-    };
-
-    getWoodcutById(id: string): Promise<DurerWoodcutType> {
-        const woodcut = this.woodcuts.find(w => w.id === id);
-        if (!woodcut) return Promise.reject(new Error('Not found'));
-        return Promise.resolve(woodcut);
     }
 
     async getArtists(

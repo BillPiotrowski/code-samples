@@ -16,7 +16,6 @@ const App: React.FC<AppMockArgs> = args => {
      */
     useEffect(() => {
         new Promise(resolve => setTimeout(resolve, 500)).then(() => {
-            console.log("completed loading.");
             setHasLoaded(true);
         });
 
