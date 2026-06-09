@@ -27,12 +27,9 @@ const InfiniteScroll = <T,>( args: InfiniteScrollArgs<T>)=> {
         setPageNumber(1)
     }, [args.filters]);
 
-    const {
-        isLoading: isLoading,
-        error: error,
-        results: results,
-        hasNextPage: hasNextPage
-    } = useInfiniteScroll<T>(pageNumber, args.getter, sortOption?.property ?? undefined, sortOption?.direction ?? undefined, args.filters);
+    const { isLoading, error, results, hasNextPage } = useInfiniteScroll<T>(
+        pageNumber, args.getter, sortOption?.property ?? undefined, sortOption?.direction ?? undefined, args.filters
+    );
     const lastMemberRef = useLastElementRef(isLoading, hasNextPage, setPageNumber);
 
     const sortOptionSelectElement = (sortOptionIndex !== null) ?

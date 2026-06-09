@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { RouterProvider } from 'react-router-dom';
 import getAppRouter from './AppRouter';
 import useIsSingleColumnLayout from './Utility/isSingleColumnEffect';
-import SplashScreen from './Component/SpashScreen';
+import SplashScreen from './Component/SplashScreen';
 import { API } from './API';
 // import { GetAssetFiltersResponse } from '../../data/Asset/Asset';
 // import { Ruleset } from '../../data/Ruleset/Ruleset';

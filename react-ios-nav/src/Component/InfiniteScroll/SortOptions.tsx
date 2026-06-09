@@ -17,12 +17,13 @@ const SortOptions: React.FC<SortOptionsArgs> = (args) => {
 
     return <select
         className={classNames}
+        value={args.sortOptionIndex}
         onChange={e => {
             args.setSortOptionIndex(parseInt(e.target.value));
         }}
     >
         {args.sortOptions.map((option, i) => {
-            return <option value={i} selected={args.sortOptionIndex === i}>{option.name}</option>
+            return <option key={i} value={i}>{option.name}</option>
         })}
     </select>
 }

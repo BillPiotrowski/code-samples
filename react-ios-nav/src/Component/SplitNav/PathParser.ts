@@ -7,20 +7,20 @@ export const stripTrailingSlash = (path: string) => {
 
 
 export const getRelativePath = (root: string, urlPath: string) => {
-    const urlPathParths = urlPath.split(root);
+    const urlPathParts = urlPath.split(root);
     if(
-        urlPathParths.length !== 2 ||
-        urlPathParths[0] !== ""
+        urlPathParts.length !== 2 ||
+        urlPathParts[0] !== ""
     ){
         return urlPath;
     }
-    return urlPathParths[1];
+    return urlPathParts[1];
 }
 
-const getPathPartsAreAncestors = (toPathParts: string[], fromPathParths: string[]) => {
-    const commonLength = Math.min(toPathParts.length, fromPathParths.length);
+const getPathPartsAreAncestors = (toPathParts: string[], fromPathParts: string[]) => {
+    const commonLength = Math.min(toPathParts.length, fromPathParts.length);
     for(let i = 0; i < commonLength; i++){
-        if(toPathParts[i] !== fromPathParths[i]){
+        if(toPathParts[i] !== fromPathParts[i]){
             return false;
         }
     }

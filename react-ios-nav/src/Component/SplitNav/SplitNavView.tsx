@@ -41,7 +41,7 @@ const SplitNavView = (props: SplitNavViewProps) => {
                 x: values.segueDirection === 'left' ? "60%" : "-60%",
             };
         },
-        enter: (_?: AnimationPresenceCustomProps) => {
+        enter: () => {
             return {x: direction}
         }
     }

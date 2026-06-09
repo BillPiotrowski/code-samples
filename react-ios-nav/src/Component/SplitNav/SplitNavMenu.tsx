@@ -13,11 +13,11 @@ const SplitNavMenu: React.FC<SplitNavMenuProps> = props => {
 
     return <div className={styles.menuNavigation}>
         {props.navListGroups.map(group => {
-            return <div className={styles.section}>
+            return <div key={group.title} className={styles.section}>
                 <h3>{group.title}</h3>
                 <ul>
                     {group.items.map(item => {
-                        return <li><NavLink
+                        return <li key={item.to}><NavLink
                             className={({ isActive, isPending, isTransitioning }) =>
                                 [
                                     isPending ? "pending" : "",

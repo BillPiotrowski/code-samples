@@ -27,7 +27,7 @@ const TitleBar: React.FC<TitleBarProps> = props => {
             <h1>{props.title}</h1>
             <ul>
                 {(props.tools ?? []).map(tool => {
-                    return <li><NeutralButton disabled={tool.isDisabled ?? false} onClick={(e) => {
+                    return <li key={tool.title}><NeutralButton disabled={tool.isDisabled ?? false} onClick={(e) => {
                         e.preventDefault();
                         tool.toggleCallback();
                     }}>{tool.title}</NeutralButton></li>
