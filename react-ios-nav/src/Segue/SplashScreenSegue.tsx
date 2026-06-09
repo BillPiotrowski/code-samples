@@ -2,9 +2,8 @@ import React from 'react';
 import {motion} from 'framer-motion';
 
 interface SplashScreenSegueProps {
-    children?: any;
+    children?: React.ReactNode;
     fadeIn?: boolean;
-    key?: string;
 }
 
 /**
@@ -17,7 +16,6 @@ const SplashScreenSegue: React.FC<SplashScreenSegueProps>  = props => {
     const fadeIn = props.fadeIn ?? true;
     return (
         <motion.div
-            key={props.key}
             initial={{ opacity: fadeIn ? 0 : 1}}
             animate={{  opacity: 1 }}
             exit={{ opacity: 0 }}
