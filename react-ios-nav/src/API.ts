@@ -3,6 +3,7 @@ import type { Artist, PaginatedArtistResponseType } from './Type/PersonType';
 
 export class API {
     private artists: Artist[];
+    private artistsCache = new Map<string, PaginatedArtistResponseType>();
 
     constructor() {
         this.artists = [...initialArtists];
@@ -14,10 +15,15 @@ export class API {
         sortBy?: string,
         sortDirection?: string
     ): Promise<PaginatedArtistResponseType> {
-        await delay(250); 
+        const key = `${page}-${limit}-${sortBy}-${sortDirection}`;
+        const cached = this.artistsCache.get(key);
+        if (cached !== undefined) return cached;
+        await delay(250);
         const sorted = sortCollection(this.artists, sortBy, sortDirection);
         const paginated = paginateCollection(sorted, page, limit);
-        return Promise.resolve({ items: paginated, total: this.artists.length });
+        const result = { items: paginated, total: this.artists.length };
+        this.artistsCache.set(key, result);
+        return result;
     }
 
     getArtistById(id: string): Promise<Artist> {
