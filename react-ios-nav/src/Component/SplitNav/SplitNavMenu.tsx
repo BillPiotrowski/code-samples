@@ -1,22 +1,14 @@
 import React from 'react';
-import styles from './MenuNavigation.module.scss';
+import styles from './SplitNavMenu.module.scss';
 import { NavLink } from 'react-router-dom';
+import type { NavListGroup } from './SplitNavTypes';
 
-interface NavListItem {
-    title: string;
-    to: string;
-}
-interface NavListGroup {
-    title: string;
-    items: NavListItem[];
-}
-
-interface ListProps {
+interface SplitNavMenuProps {
     navListGroups: NavListGroup[];
     isSingleColumn?: boolean;
 }
 
-const MenuNavigation: React.FC<ListProps> = props => {
+const SplitNavMenu: React.FC<SplitNavMenuProps> = props => {
     const isSingleColumn = props.isSingleColumn ?? false;
 
     return <div className={styles.menuNavigation}>
@@ -25,7 +17,7 @@ const MenuNavigation: React.FC<ListProps> = props => {
                 <h3>{group.title}</h3>
                 <ul>
                     {group.items.map(item => {
-                        return <li><NavLink 
+                        return <li><NavLink
                             className={({ isActive, isPending, isTransitioning }) =>
                                 [
                                     isPending ? "pending" : "",
@@ -33,7 +25,7 @@ const MenuNavigation: React.FC<ListProps> = props => {
                                     isTransitioning ? "transitioning" : "",
                                 ].join(" ")
                             }
-                            to={item.to} >{item.title}
+                            to={item.to}>{item.title}
                         </NavLink></li>
                     })}
                 </ul>
@@ -42,4 +34,4 @@ const MenuNavigation: React.FC<ListProps> = props => {
     </div>
 }
 
-export default MenuNavigation;
+export default SplitNavMenu;

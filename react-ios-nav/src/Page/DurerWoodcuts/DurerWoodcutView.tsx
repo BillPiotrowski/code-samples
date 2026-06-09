@@ -1,7 +1,7 @@
 import React from 'react';
 // import FFNWArmySheetView from './FFNWArmySheetView';
 import { useNavigate, useOutletContext } from 'react-router-dom';
-import NavListView from '../../Component/NavListView';
+import NavListView from '../../Component/SplitNav/SplitNavView';
 import type { DurerWoodcutContext } from './DurerWoodcutLoader';
 // import { FFNWArmySheetRouteOutletContext } from './FFNWArmySheetRoute';
 // import { FalloutFactionNukaWarCharacterSheetData } from '../RulesetDefinitions/FalloutFactionsNukaWar';
@@ -12,13 +12,13 @@ const DurerWoodcutView = () => {
     // const characterSheets = parentContext.characterSheetStates.map(s => s.characterSheet);
     // const characterSheets: FalloutFactionNukaWarCharacterSheetData[] = [];
     if(parentContext.isLoading || parentContext.editArmy === null){
-        return <NavListView segueDirection={parentContext.direction} isLoading={true} />
+        return <NavListView isLoading={true} />
     }
     // parentContext.setTitle(parentContext.editArmy.name);
     parentContext.setTitle("Somename");
     const navigate = useNavigate();
 
-    return <NavListView segueDirection={parentContext.direction}>
+    return <NavListView>
         <div>
             <h2>Some cool stuff about the woodcut</h2>
         </div>

@@ -1,8 +1,7 @@
 import { Outlet } from "react-router-dom";
-import type { NavListContext } from "./NavListContext";
 
-interface ContentProps {
-    context: NavListContext;
+interface ContentProps<TContext> {
+    context: TContext;
 }
 
 /**
@@ -11,8 +10,8 @@ interface ContentProps {
  * @param props 
  * @returns 
  */
-const Content: React.FC<ContentProps> = props => {
-    return <Outlet context={props.context} />
+function Content<TContext>(props: ContentProps<TContext>) {
+    return <Outlet context={props.context} />;
 }
 
 export default Content;

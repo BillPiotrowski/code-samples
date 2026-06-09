@@ -1,28 +1,27 @@
 import React from 'react';
-import type { SegueDirection } from '../Utility/PathParser';
+import type { SegueDirection } from '../../Utility/PathParser';
 import { motion } from 'framer-motion';
-import viewStyles from './View.module.scss';
-import type { AnimationPresenceCustomProps } from '../AppRoot';
-import styles from './NavListView.module.scss';
+import viewStyles from '../View.module.scss';
+import styles from './SplitNavView.module.scss';
+import { useSegueDirection } from './SegueContext';
+import type { AnimationPresenceCustomProps } from './SplitNavSection';
 
-interface NavListViewProps{
-    segueDirection: SegueDirection;
+interface SplitNavViewProps {
     children?: React.ReactNode;
     className?: string;
     isLoading?: boolean;
 }
 
 const getInitialX = (direction: SegueDirection) => {
-
     if(direction === 'lateral'){
         return 0;
     }
     return direction === 'left' ? '-100%' : '100%';
 }
 
-const NavListView = (props: NavListViewProps) => {
-    const direction = getInitialX(props.segueDirection);
-    
+const SplitNavView = (props: SplitNavViewProps) => {
+    const direction = getInitialX(useSegueDirection());
+
     const variants = {
         exit: (values?: AnimationPresenceCustomProps) => {
             if(values === undefined){
@@ -80,4 +79,4 @@ const NavListView = (props: NavListViewProps) => {
     );
 };
 
-export default NavListView;
+export default SplitNavView;

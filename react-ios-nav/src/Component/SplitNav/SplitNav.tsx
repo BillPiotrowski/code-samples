@@ -1,23 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocation, useNavigate, useResolvedPath, Outlet } from 'react-router-dom';
-import { AnimatePresence } from 'framer-motion';
 import { type SegueDirection, stripTrailingSlash, getSegueDirection } from '../../Utility/PathParser';
-import type { NavListContext } from '../NavListContext';
-import type { NavListGroup } from '../NavListData';
+import type { SplitNavContext } from './SplitNavContext';
+import type { NavListGroup } from './SplitNavTypes';
 import TitleBar, { type TitleBarTool } from '../TitleBar';
-import MenuNavigation from '../MenuNavigation';
-import Modal from '../Modal/Modal';
+import SplitNavMenu from './SplitNavMenu';
 import useIsSingleColumnLayout from '../../Utility/isSingleColumnEffect';
-import type { API } from '../../API';
 import styles from './SplitNav.module.scss';
 
-interface SplitNavProps {
+interface SplitNavProps<TExtra> {
     navGroups: NavListGroup[];
     defaultTitle: string;
-    api: API;
+    extraContext: TExtra;
 }
 
-const SplitNav: React.FC<SplitNavProps> = (props) => {
+function SplitNav<TExtra>(props: SplitNavProps<TExtra>) {
     const location = useLocation();
     const navigate = useNavigate();
     const resolvedPath = useResolvedPath('.');
@@ -26,8 +23,6 @@ const SplitNav: React.FC<SplitNavProps> = (props) => {
     const isRoot = location.pathname === '' || location.pathname === '/';
 
     const [previousPath, setPreviousPath] = useState<string | null>(null);
-    const [isSessionMode, setIsSessionMode] = useState(false);
-    const [modal, setModal] = useState<React.JSX.Element | null>(null);
     const [title, setTitle] = useState(props.defaultTitle);
     const [tools, setTools] = useState<TitleBarTool[]>([]);
     const [showMobileMenu, setShowMobileMenu] = useState(isSingleColumn && isRoot);
@@ -49,26 +44,19 @@ const SplitNav: React.FC<SplitNavProps> = (props) => {
         ? getSegueDirection(resolvedPath.pathname, location.pathname, previousPath)
         : 'lateral';
 
-    const context: NavListContext = {
-        direction: segueDirection,
-        previousPath,
-        toPath: stripTrailingSlash(location.pathname),
-        isSessionMode,
-        setIsSessionMode,
-        setModal,
-        setPreviousPath,
-        api: props.api,
+    const splitNavContext: SplitNavContext = {
         setTitle: (t: string) => setTitle(t),
-        sequeDirection: segueDirection,
         setTools,
+        sequeDirection: segueDirection,
+        previousPath,
+        setPreviousPath,
+        toPath: stripTrailingSlash(location.pathname),
     };
 
+    const context = { ...splitNavContext, ...props.extraContext } as SplitNavContext & TExtra;
+
     const titleBar = showMobileMenu
-        ? <TitleBar
-            showBackButton={false}
-            backHandler={() => {}}
-            title="Menu"
-        />
+        ? <TitleBar showBackButton={false} backHandler={() => {}} title="Menu" />
         : <TitleBar
             showBackButton={showBackButton}
             backHandler={() => {
@@ -92,17 +80,8 @@ const SplitNav: React.FC<SplitNavProps> = (props) => {
     return (
         <div className={classes}>
             <div className={styles.splitNav}>
-                <div className={styles.modalContainer}>
-                    <AnimatePresence mode="sync">
-                        {modal !== null && (
-                            <Modal closeHandler={() => setModal(null)}>
-                                {modal}
-                            </Modal>
-                        )}
-                    </AnimatePresence>
-                </div>
                 <div className={styles.navContainer}>
-                    <MenuNavigation navListGroups={props.navGroups} isSingleColumn={isSingleColumn} />
+                    <SplitNavMenu navListGroups={props.navGroups} isSingleColumn={isSingleColumn} />
                 </div>
                 <div className={styles.titleContainer}>
                     {titleBar}
@@ -113,7 +92,7 @@ const SplitNav: React.FC<SplitNavProps> = (props) => {
             </div>
         </div>
     );
-};
+}
 
 export default SplitNav;
 

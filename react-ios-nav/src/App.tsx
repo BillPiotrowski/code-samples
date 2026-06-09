@@ -29,7 +29,7 @@ const App: React.FC<AppMockArgs> = args => {
      * @todo migrate this to a loading process at the start of app.
      */
     useEffect(() => {
-        new Promise(resolve => setTimeout(resolve, 3000)).then(() => {
+        new Promise(resolve => setTimeout(resolve, 500)).then(() => {
             console.log("completed loading.");
             setHasLoaded(true);
         });

@@ -1,4 +1,4 @@
-interface NavListItem {
+export interface NavListItem {
     title: string;
     to: string;
 }
