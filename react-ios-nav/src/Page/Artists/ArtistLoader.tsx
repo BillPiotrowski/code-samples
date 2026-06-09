@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useParams, Outlet, useOutletContext } from 'react-router-dom';
 import { useArtistsContext, type ArtistsRootOutletContext } from './ArtistsRoot';
 
@@ -13,29 +13,31 @@ const ArtistLoader: React.FC = () => {
     const [_, setError] = useState<Error | null>(null);
     const params = useParams();
     const parentContext = useArtistsContext();
+    const parentContextRef = useRef(parentContext);
     const artistId = params.artistId;
 
     useEffect(() => {
+        const ctx = parentContextRef.current;
         if (artistId === undefined) {
             setError(new Error('artist id is undefined'));
             return;
         }
         if (
-            parentContext.selectedArtist !== null &&
-            parentContext.selectedArtist.id === artistId
+            ctx.selectedArtist !== null &&
+            ctx.selectedArtist.id === artistId
         ) {
             setIsLoading(false);
             return;
         }
-        parentContext.api.getArtistById(artistId)
+        ctx.api.getArtistById(artistId)
             .then((response) => {
-                parentContext.setSelectedArtist(response);
+                ctx.setSelectedArtist(response);
             }).catch((error) => {
                 setError(error);
             }).finally(() => {
                 setIsLoading(false);
             });
-    }, []);
+    }, [artistId]);
 
     const context: ArtistContext = {
         isLoading,

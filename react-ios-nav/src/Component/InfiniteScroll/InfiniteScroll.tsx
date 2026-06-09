@@ -15,7 +15,7 @@ interface InfiniteScrollArgs<T> {
         ref: React.LegacyRef<HTMLLIElement> | undefined
     ) => React.JSX.Element;
     sortOptions: SortOption[];
-    filters?: any
+    filters?: unknown
 }
 
 const InfiniteScroll = <T,>( args: InfiniteScrollArgs<T>)=> {

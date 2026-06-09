@@ -11,10 +11,10 @@ interface InfiniteScrollResponse<T> {
 
 const useInfiniteScroll = <T>(
     pageNum = 1,
-    getter: (limit: number, page: number, sortBy?: string, sortDirection?: SortByDirection, filters?: any) => Promise<PaginatedResponse<T>>,  
-    sortBy?: string, 
+    getter: (limit: number, page: number, sortBy?: string, sortDirection?: SortByDirection, filters?: unknown) => Promise<PaginatedResponse<T>>,
+    sortBy?: string,
     sortDirection?: SortByDirection,
-    filters?: any
+    filters?: unknown
 ): InfiniteScrollResponse<T> => {
     const [results, setResults] = useState<T[]>([]);
     const [isLoading, setIsLoading] = useState(false);
