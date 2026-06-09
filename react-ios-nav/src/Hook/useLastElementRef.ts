@@ -1,13 +1,13 @@
-import { useRef, useCallback, type Dispatch, type SetStateAction, type MutableRefObject } from 'react';
+import { useRef, useCallback, type Dispatch, type SetStateAction } from 'react';
 
 const useLastElementRef = (
     isLoading: boolean,
     hasNextPage: boolean,
     setPageNum: Dispatch<SetStateAction<number>>
-): (member: any) => MutableRefObject<IntersectionObserver | null> | undefined => {
+): (member: HTMLLIElement | null) => void => {
     const intObserver = useRef<IntersectionObserver|null>(null);
 
-    const lastMemberRef = useCallback((member: any) => {
+    const lastMemberRef = useCallback((member: HTMLLIElement | null) => {
         if(isLoading){
             return;
         }
@@ -24,7 +24,6 @@ const useLastElementRef = (
         if(member){
             intObserver.current.observe(member);
         }
-        return intObserver;
     },[isLoading, hasNextPage]);
 
     return lastMemberRef
