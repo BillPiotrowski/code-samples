@@ -1,18 +1,10 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-// import { ArmySheetsRouteRouteOutletContext } from './ArmySheetsRoute';
-// import NavListView from '../../AppMock/Components/NavListView';
-// import InfiniteScroll from '../../AppMock/Components/InfiniteScroll/InfiniteScroll';
+import { Link } from 'react-router-dom';
 import NavListView from '../../Component/SplitNav/SplitNavView';
 import type { PaginatedDurerWoodcutResponseType } from '../../Type/DurerWoodcutType';
 import InfiniteScroll from '../../Component/InfiniteScroll';
 import { useDurerWoodcutsContext } from './DurerWoodcutsRoot';
 import Header from '../../Component/Header';
 import type { SortOption } from '../../Type/SortOption';
-// import { PaginatedArmiesResponse } from '../../../data/Army/ArmyResponse';
-// import { SortOption } from '../../AppMock/Components/SortOptions/SortOptions';
-// import Header from '../../AppMock/Components/Header/Header';
-// import ArmySheetCreate from './ArmySheetCreate';
 
 const sortByOptions: SortOption[] = [
     {name: 'ID Descending', property: 'id', direction: 'DESC'},
@@ -23,22 +15,6 @@ const sortByOptions: SortOption[] = [
 
 const DurerWoodcutsList = () => {
     const parentContext = useDurerWoodcutsContext();
-    const navigate = useNavigate();
-
-    // useEffect(() => {
-    //     parentContext.setModal(null);
-    // }, [parentContext.assetListFilters]);
-
-    // useEffect(() => {
-    //     parentContext.setTools([
-    //         {
-    //             title: 'Filters',
-    //             toggleCallback: async () => {
-    //                 parentContext.setModal(<AssetsFilters filters={parentContext.assetListFilters} setFilters={parentContext.setAssetListFilters} />)
-    //             }
-    //         }
-    //     ])
-    // }, [parentContext.assetListFilters])
 
     const getter = (limit: number, pageNum: number, sortBy?: string, sortDirection?: string): Promise<PaginatedDurerWoodcutResponseType> => {
         return parentContext.api.getWoodcuts(limit, pageNum, sortBy, sortDirection);
@@ -65,8 +41,7 @@ const DurerWoodcutsList = () => {
         />
         <InfiniteScroll
             getter={getter}
-            createListElement={(bundle, index, ref) => {
-                // return <li>Some thing</li>
+            createListElement={(bundle, _, ref) => {
                 return <li ref={ref}><Link to={`${bundle.id}`}>{bundle.name}</Link></li>
             }}
             sortOptions={sortByOptions}

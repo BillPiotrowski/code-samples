@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useLocation, useNavigate, Outlet, useResolvedPath } from 'react-router-dom';
+import { useLocation, useNavigate, Outlet } from 'react-router-dom';
 import { stripTrailingSlash } from '../../Utility/PathParser';
 import type { SplitNavContext } from './SplitNavContext';
 import type { NavListGroup } from './SplitNavTypes';
@@ -18,7 +18,6 @@ interface SplitNavProps<TExtra> {
 function SplitNav<TExtra>(props: SplitNavProps<TExtra>) {
     const location = useLocation();
     const navigate = useNavigate();
-    const resolvedPath = useResolvedPath('.');
     const isSingleColumn = useIsSingleColumnLayout();
 
     const isRoot = location.pathname === '' || location.pathname === '/';
