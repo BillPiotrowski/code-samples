@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import type { SegueDirection } from '../../Utility/PathParser';
+import type { SegueDirection } from './PathParser';
 import { motion } from 'framer-motion';
-import useSplitNavContext from './useSplitNavContext';
+import useSplitNavContext from './Context/useSplitNavContext';
 import viewStyles from '../View.module.scss';
 import styles from './SplitNavView.module.scss';
-import { useSegueDirection } from './SegueContext';
+import { useSegueDirection } from './Context/SegueContext';
 import type { AnimationPresenceCustomProps } from './SplitNavSection';
 
 interface SplitNavViewProps {

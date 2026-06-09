@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import type { AppRootContext } from '../../AppRoot';
 import SplitNavSection from '../../Component/SplitNav/SplitNavSection';
-import useSplitNavContext from '../../Component/SplitNav/useSplitNavContext';
+import useSplitNavContext from '../../Component/SplitNav/Context/useSplitNavContext';
 import type { DurerWoodcutType } from '../../Type/DurerWoodcutType';
 
 export interface DurerWoodcutsRootOutletContext extends AppRootContext {

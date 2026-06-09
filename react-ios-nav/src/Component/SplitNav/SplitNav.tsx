@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useLocation, useNavigate, Outlet } from 'react-router-dom';
-import { stripTrailingSlash } from '../../Utility/PathParser';
-import type { SplitNavContext } from './SplitNavContext';
+import { stripTrailingSlash } from './PathParser';
+import type { SplitNavContext } from './Context/SplitNavContext';
 import type { NavListGroup } from './SplitNavTypes';
 import TitleBar, { type TitleBarTool } from '../TitleBar';
 import SplitNavMenu from './SplitNavMenu';
 import useIsSingleColumnLayout from '../../Utility/isSingleColumnEffect';
-import NavPathContext from './NavPathContext';
+import NavPathContext from './Context/NavPathContext';
 import styles from './SplitNav.module.scss';
 
 interface SplitNavProps<TExtra> {
@@ -92,20 +92,7 @@ function SplitNav<TExtra>(props: SplitNavProps<TExtra>) {
 export default SplitNav;
 
 
-const doubleBackUrls = [
-    '/characters/ffnw',
-    '/armies/ffnw',
-    '/rulesets/ffnw/feature',
-];
-
 const getBackUrlFromPathArray = (pathArray: string[]): string | null => {
-    if (pathArray.length < 2) {
-        return null;
-    }
-    const previousPathArray = pathArray.filter((_, i) => i < pathArray.length - 1);
-    const backURL = `/${previousPathArray.join('/')}`;
-    if (doubleBackUrls.includes(backURL)) {
-        return getBackUrlFromPathArray(previousPathArray);
-    }
-    return backURL;
+    if (pathArray.length < 2) return null;
+    return `/${pathArray.slice(0, -1).join('/')}`;
 };

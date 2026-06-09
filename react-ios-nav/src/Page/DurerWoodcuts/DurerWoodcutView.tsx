@@ -7,7 +7,7 @@ const DurerWoodcutView = () => {
         return <NavListView isLoading={true} />
     }
 
-    return <NavListView title="Somename">
+    return <NavListView title={parentContext.editArmy.name}>
         <h2>Some cool stuff about the woodcut</h2>
     </NavListView>
 }

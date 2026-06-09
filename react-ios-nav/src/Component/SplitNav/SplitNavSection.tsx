@@ -1,10 +1,10 @@
 import { AnimatePresence } from "framer-motion";
 import React, { useEffect } from "react";
 import { useResolvedPath, useLocation } from "react-router-dom";
-import { getSegueDirection, stripTrailingSlash, type SegueDirection } from "../../Utility/PathParser";
+import { getSegueDirection, stripTrailingSlash, type SegueDirection } from "./PathParser";
 import { AnimatedOutlet } from "../../AppRoot";
-import SegueContext from "./SegueContext";
-import { useNavPath } from "./NavPathContext";
+import SegueContext from "./Context/SegueContext";
+import { useNavPath } from "./Context/NavPathContext";
 
 export interface AnimationPresenceCustomProps {
     segueDirection: SegueDirection;

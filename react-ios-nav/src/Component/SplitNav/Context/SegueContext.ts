@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react';
-import type { SegueDirection } from '../../Utility/PathParser';
+import type { SegueDirection } from '../PathParser';
 
 const SegueContext = createContext<SegueDirection>('lateral');
 
