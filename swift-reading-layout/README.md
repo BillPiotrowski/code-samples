@@ -18,6 +18,7 @@ values. Adding a new spread means defining its grid — no layout code changes.
 ## Tech Stack
 - Swift
 
+![Navigation demo](./demo.gif)
+
 ## Complete Product
-Built for Madame Endora's Fortune Cards,
-shipped to the App Store.
+Built for [Madame Endora's Fortune Cards](https://apps.apple.com/ca/app/madame-endora/id1625731386), shipped to the App Store.
