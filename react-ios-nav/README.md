@@ -3,8 +3,6 @@
 A React implementation of iOS-style hierarchical navigation — split-view layout, 
 directional push/pop transitions, and a responsive mobile menu.
 
-![Navigation demo](./demo.gif)
-
 ## Tech Stack
 - React
 - React Router
@@ -20,6 +18,8 @@ can animate content the way iOS does: push forward, pop back, no guesswork. The
 same route tree drives both the desktop split-view and the collapsed mobile menu — 
 no separate mobile routes. `InfiniteScroll<T>` is a fully generic, typed component 
 that takes a paginated getter and a render function — drop it into any list.
+
+![Navigation demo](./demo.gif)
 
 ## Running locally
 
