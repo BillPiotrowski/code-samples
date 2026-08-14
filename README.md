@@ -1,6 +1,6 @@
 # code-samples
 
-Production code samples across React and Swift, drawn from shipped projects. Different problems, same instinct: build the general system, not the specific solution.
+Production code samples across React and Swift, drawn from shipped projects.
 
 
 ---
